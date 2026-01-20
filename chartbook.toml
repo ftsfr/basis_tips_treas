@@ -1,0 +1,86 @@
+[config]
+type = "pipeline"
+chartbook_format_version = "0.0.2"
+
+[site]
+title = "TIPS-Treasury Basis"
+author = "Jeremy Bejarano"
+copyright = "2025"
+logo_path = ""
+favicon_path = ""
+
+[pipeline]
+id = "basis_tips_treas"
+pipeline_name = "TIPS-Treasury Basis"
+pipeline_description = "TIPS-Treasury arbitrage spread measuring relative value between TIPS and nominal Treasuries"
+lead_pipeline_developer = "Jeremy Bejarano"
+contributors = ["Jeremy Bejarano"]
+runs_on = "Windows/Linux/MacOS (Bloomberg required for inflation swaps)"
+git_repo_URL = "https://github.com/ftsfr/basis_tips_treas"
+README_file_path = "./README.md"
+
+[notebooks]
+
+[notebooks.summary_basis_tips_treas]
+notebook_name = "summary_basis_tips_treas"
+notebook_description = "Summary statistics and visualization of TIPS-Treasury basis"
+notebook_path = "_output/_notebook_build/summary_basis_tips_treas.ipynb"
+is_publishable = true
+
+[charts]
+
+[dataframes]
+
+[dataframes.ftsfr_tips_treasury_basis]
+dataframe_name = "ftsfr_tips_treasury_basis"
+short_description_df = "Daily TIPS-Treasury arbitrage spreads for 4 tenors"
+data_sources = ["Federal Reserve", "Bloomberg"]
+data_providers = ["Federal Reserve", "Bloomberg"]
+need_to_contact_provider = ["no"]
+data_on_pre_approved_list = ["No"]
+links_to_data_providers = ["https://federalreserve.gov", "https://bloomberg.com"]
+topic_tags = ["TIPS", "Treasury", "arbitrage", "basis", "fixed income"]
+type_of_data_access = ["Public", "Bloomberg Terminal"]
+data_license = "Public / Bloomberg"
+license_expiration_date = ""
+provider_contact_info = ""
+restriction_on_use = "No"
+how_is_pulled = "Fed yields from public source, inflation swaps from Bloomberg"
+path_to_parquet_data = "./_data/ftsfr_tips_treasury_basis.parquet"
+path_to_excel_data = ""
+date_col = "ds"
+dataframe_docs_str = """
+## TIPS-Treasury Arbitrage Basis
+
+Measures the spread between TIPS-implied risk-free rates and nominal Treasury yields.
+
+### Columns
+
+| Column | Description |
+|--------|-------------|
+| unique_id | Tenor identifier (arb_2, arb_5, arb_10, arb_20) |
+| ds | Date |
+| y | Arbitrage spread in basis points |
+
+### Methodology
+
+TIPS-implied risk-free rate:
+$$
+\\text{TIPS-implied RF} = 10000 × (e^{r_{real} + ln(1 + π)} - 1)
+$$
+
+Arbitrage spread:
+$$
+\\text{Arb} = \\text{TIPS-implied RF} - \\text{Nominal Treasury}
+$$
+
+### Interpretation
+
+- Positive: TIPS appear cheap relative to nominals
+- Negative: TIPS appear expensive
+
+### Data Sources
+
+- Federal Reserve: GSW zero-coupon Treasury and TIPS yields
+- Bloomberg: Treasury inflation swaps
+"""
