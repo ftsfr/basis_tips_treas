@@ -1,0 +1,27 @@
+# Paper References for TIPS-Treasury Basis Module
+
+[Fleckenstein2014]
+title = "The TIPS-Treasury Bond Puzzle"
+authors = "Matthias Fleckenstein, Francis A. Longstaff, and Hanno Lustig"
+year = 2014
+journal = "Journal of Finance"
+description = "The paper investigates the persistent mispricing between Treasury bonds and Treasury Inflation-Protected Securities (TIPS)."
+empirical_facts = [
+    "The mispricing between Treasury bonds and TIPS can exceed $20 per $100 notional.",
+    "The total TIPS-Treasury mispricing has exceeded $56 billion, representing nearly 8% of the total amount of TIPS outstanding.",
+    "The average size of the mispricing is 54.5 basis points, but it can exceed 200 basis points for some pairs.",
+    "TIPS-Treasury mispricing is affected by funding liquidity factors such as the availability of Treasury collateral in the repo market.",
+]
+lessons_learned = [
+    "Treasury bonds are perceived to have special attributes like liquidity and safety, driving their higher prices relative to TIPS.",
+    "The slow-moving-capital hypothesis explains the persistence of arbitrage mispricing.",
+    "The Treasury-TIPS price differentials should not be used to infer market inflation expectations due to persistent mispricing.",
+]
+data_sources = ["Daily prices for maturity-matched pairs of TIPS issues and Treasury bonds"]
+
+[Siriwardane2021]
+title = "Segmented Arbitrage"
+authors = "Emil Siriwardane, Adi Sunderam, and Jonathan Wallen"
+year = 2021
+description = "The paper identifies financial constraints that explain the persistence of TIPS-Treasury basis and other arbitrage opportunities."
+data_sources = ["TIPS prices", "Treasury bond prices", "Inflation swap data"]

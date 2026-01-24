@@ -52,3 +52,20 @@ Arb = TIPS-implied RF - Nominal Treasury
 1. Ensure Bloomberg Terminal is running
 2. Install dependencies: `pip install -r requirements.txt`
 3. Run pipeline: `doit`
+
+## Academic References
+
+### Primary Papers
+
+- **Fleckenstein, Longstaff, and Lustig (2014)** - "The TIPS-Treasury Bond Puzzle"
+  - Journal of Finance
+  - Documents persistent mispricing between TIPS and nominal Treasuries
+
+- **Siriwardane, Sunderam, and Wallen** - "Segmented Arbitrage"
+  - Links TIPS-Treasury basis to financial constraints
+
+### Key Findings
+
+- Mispricing can exceed $20 per $100 notional
+- Average mispricing is 54.5 basis points, can exceed 200 bps
+- Slow-moving capital explains persistence of arbitrage
