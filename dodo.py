@@ -145,6 +145,23 @@ def task_format():
     }
 
 
+def task_generate_charts():
+    """Generate charts for TIPS-Treasury basis."""
+    return {
+        "actions": ["python src/generate_figures.py"],
+        "file_dep": [
+            "src/generate_figures.py",
+            DATA_DIR / "tips_treasury_implied_rf.parquet",
+        ],
+        "targets": [
+            OUTPUT_DIR / "tips_treasury_spreads.html",
+            OUTPUT_DIR / "tips_treasury_summary.csv",
+        ],
+        "verbosity": 2,
+        "task_dep": ["calc"],
+    }
+
+
 def task_run_notebooks():
     """Execute summary notebook and convert to HTML."""
     notebook_py = BASE_DIR / "src" / "summary_basis_tips_treas_ipynb.py"
@@ -179,8 +196,9 @@ def task_generate_pipeline_site():
         "file_dep": [
             "chartbook.toml",
             OUTPUT_DIR / "summary_basis_tips_treas.ipynb",
+            OUTPUT_DIR / "tips_treasury_spreads.html",
         ],
         "targets": [BASE_DIR / "docs" / "index.html"],
         "verbosity": 2,
-        "task_dep": ["run_notebooks"],
+        "task_dep": ["run_notebooks", "generate_charts"],
     }

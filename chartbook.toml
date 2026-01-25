@@ -29,6 +29,24 @@ is_publishable = true
 
 [charts]
 
+[charts.tips_treasury_spreads]
+chart_name = "TIPS-Treasury Spreads"
+short_description_chart = "Time series of TIPS-Treasury arbitrage spreads by tenor"
+dataframe_id = "ftsfr_tips_treasury_basis"
+path_to_html_chart = "./_output/tips_treasury_spreads.html"
+topic_tags = ["TIPS", "Treasury", "arbitrage", "basis"]
+chart_docs_str = """
+## TIPS-Treasury Arbitrage Spreads
+
+Time series plot showing the TIPS-Treasury arbitrage spreads across different maturities (2Y, 5Y, 10Y, 20Y).
+
+### Interpretation
+
+- Positive spreads indicate TIPS appear cheap relative to nominal Treasuries
+- Negative spreads indicate TIPS appear expensive
+- Spread widening often occurs during market stress
+"""
+
 [dataframes]
 
 [dataframes.ftsfr_tips_treasury_basis]
