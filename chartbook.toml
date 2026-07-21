@@ -1,73 +1,59 @@
-[config]
-type = "pipeline"
-chartbook_format_version = "0.0.2"
-
-[site]
-title = "TIPS-Treasury Basis"
-author = "Jeremy Bejarano"
+[project]
+name = "TIPS-Treasury Basis"
+description = "TIPS-Treasury arbitrage spread measuring relative value between TIPS and nominal Treasuries"
+contributors = [
+    "Jeremy Bejarano",
+]
+repo_url = "https://github.com/ftsfr/basis_tips_treas"
 copyright = "2025"
-logo_path = ""
-favicon_path = ""
-
-[pipeline]
-id = "basis_tips_treas"
-pipeline_name = "TIPS-Treasury Basis"
-pipeline_description = "TIPS-Treasury arbitrage spread measuring relative value between TIPS and nominal Treasuries"
-lead_pipeline_developer = "Jeremy Bejarano"
-contributors = ["Jeremy Bejarano"]
-runs_on = "Windows/Linux/MacOS (Bloomberg required for inflation swaps)"
-git_repo_URL = "https://github.com/ftsfr/basis_tips_treas"
-README_file_path = "./README.md"
-
-[notebooks]
+os_compatibility = [
+    "Windows/Linux/MacOS (Bloomberg required for inflation swaps)",
+]
 
 [notebooks.summary_basis_tips_treas]
-notebook_name = "summary_basis_tips_treas"
-notebook_description = "Summary statistics and visualization of TIPS-Treasury basis"
-notebook_path = "_output/summary_basis_tips_treas.ipynb"
-is_publishable = true
-
-[charts]
-
-[charts.tips_treasury_spreads]
-chart_name = "TIPS-Treasury Spreads"
-short_description_chart = "Time series of TIPS-Treasury arbitrage spreads by tenor"
-dataframe_id = "ftsfr_tips_treasury_basis"
-path_to_html_chart = "./_output/tips_treasury_spreads.html"
-topic_tags = ["TIPS", "Treasury", "arbitrage", "basis"]
-chart_docs_str = """
-## TIPS-Treasury Arbitrage Spreads
-
-Time series plot showing the TIPS-Treasury arbitrage spreads across different maturities (2Y, 5Y, 10Y, 20Y).
-
-### Interpretation
-
-- Positive spreads indicate TIPS appear cheap relative to nominal Treasuries
-- Negative spreads indicate TIPS appear expensive
-- Spread widening often occurs during market stress
-"""
-
-[dataframes]
+name = "summary_basis_tips_treas"
+description = "Summary statistics and visualization of TIPS-Treasury basis"
+path = "_output/summary_basis_tips_treas.ipynb"
+publishable = true
 
 [dataframes.ftsfr_tips_treasury_basis]
-dataframe_name = "ftsfr_tips_treasury_basis"
-short_description_df = "Daily TIPS-Treasury arbitrage spreads for 4 tenors"
-data_sources = ["Federal Reserve", "Bloomberg"]
-data_providers = ["Federal Reserve", "Bloomberg"]
-need_to_contact_provider = ["no"]
-data_on_pre_approved_list = ["No"]
-links_to_data_providers = ["https://federalreserve.gov", "https://bloomberg.com"]
-topic_tags = ["TIPS", "Treasury", "arbitrage", "basis", "fixed income"]
-type_of_data_access = ["Public", "Bloomberg Terminal"]
-data_license = "Public / Bloomberg"
-license_expiration_date = ""
-provider_contact_info = ""
-restriction_on_use = "No"
-how_is_pulled = "Fed yields from public source, inflation swaps from Bloomberg"
-path_to_parquet_data = "./_data/ftsfr_tips_treasury_basis.parquet"
-path_to_excel_data = ""
+name = "ftsfr_tips_treasury_basis"
+description = "Daily TIPS-Treasury arbitrage spreads for 4 tenors"
+sources = [
+    "Federal Reserve",
+    "Bloomberg",
+]
+providers = [
+    "Federal Reserve",
+    "Bloomberg",
+]
+contact_required = [
+    "no",
+]
+pre_approved = [
+    "No",
+]
+provider_links = [
+    "https://federalreserve.gov",
+    "https://bloomberg.com",
+]
+tags = [
+    "TIPS",
+    "Treasury",
+    "arbitrage",
+    "basis",
+    "fixed income",
+]
+access_types = [
+    "Public",
+    "Bloomberg Terminal",
+]
+license = "Public / Bloomberg"
+restrictions = "No"
+pull_method = "Fed yields from public source, inflation swaps from Bloomberg"
+path = "./_data/ftsfr_tips_treasury_basis.parquet"
 date_col = "ds"
-dataframe_docs_str = """
+docs = """
 ## TIPS-Treasury Arbitrage Basis
 
 Measures the spread between TIPS-implied risk-free rates and nominal Treasury yields.
@@ -101,4 +87,27 @@ $$
 
 - Federal Reserve: GSW zero-coupon Treasury and TIPS yields
 - Bloomberg: Treasury inflation swaps
+"""
+
+[charts.tips_treasury_spreads]
+name = "TIPS-Treasury Spreads"
+description = "Time series of TIPS-Treasury arbitrage spreads by tenor"
+dataframe = "ftsfr_tips_treasury_basis"
+path = "./_output/tips_treasury_spreads.html"
+tags = [
+    "TIPS",
+    "Treasury",
+    "arbitrage",
+    "basis",
+]
+docs = """
+## TIPS-Treasury Arbitrage Spreads
+
+Time series plot showing the TIPS-Treasury arbitrage spreads across different maturities (2Y, 5Y, 10Y, 20Y).
+
+### Interpretation
+
+- Positive spreads indicate TIPS appear cheap relative to nominal Treasuries
+- Negative spreads indicate TIPS appear expensive
+- Spread widening often occurs during market stress
 """
