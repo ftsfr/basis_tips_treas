@@ -9,7 +9,7 @@ copyright = "2025"
 os_compatibility = [
     "Windows/Linux/MacOS (Bloomberg required for inflation swaps)",
 ]
-requires_chartbook = ">=0.4.0"
+requires_chartbook = ">=0.5.0"
 
 [scripts]
 build = "doit"
